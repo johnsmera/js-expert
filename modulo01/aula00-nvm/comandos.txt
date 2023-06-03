@@ -1,0 +1,7 @@
+nvm use
+
+nvm install 8
+
+node -v > .nvmrc
+
+dica: setar engines no package.json
