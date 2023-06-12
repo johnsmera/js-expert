@@ -38,7 +38,7 @@ describe('API Suite Test', () => {
         password: '12'
       }).expect(401)
 
-      assert.strictEqual(response.text, 'Logging failed!')
+      assert.deepStrictEqual(response.text, 'Logging failed!')
     })
   })
 
