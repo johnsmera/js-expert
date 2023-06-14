@@ -24,16 +24,29 @@ export default class TerminalController {
     this.initializeTable(database, language)
   }
 
-  initializeTable(database, language) {
-    const data = database.map(item => new Person(item).formatted(language))
+  setFormattedData(data, language) {
+    const formattedData = data.map(item => new Person(item).formatted(language))
 
-    const table = chalkTable(this.getTableOptions(), data)
+    this.data = formattedData
+  }
+
+  initializeTable(database, language) {
+    this.setFormattedData(database, language)
+
+    const table = chalkTable(this.getTableOptions(), this.data)
 
     this.print = console.draft(table)
-    this.data = data
+  }
+
+  updateTable(item) {
+    this.data.push(item)
+    const table = chalkTable(this.getTableOptions(), this.data)
+    this.print(table)
   }
 
   question(msg = '') {
+    if (msg === '') return new Promise(resolve => resolve(''))
+
     return new Promise(resolve => this.terminal.question(msg, resolve))
   }
 

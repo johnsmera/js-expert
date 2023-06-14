@@ -1,14 +1,21 @@
 {
   "type": "module",
   "scripts": {
-    "dev": "npx nodemon --ignore database.json --exec node src"
+    "dev": "npx nodemon --ignore database.json --exec node src",
+    "test": "npx mocha --timeout 3000 -w --parallel test/*.test.js",
+    "test:cov": "npx nyc npx mocha -r reify --parallel test/*.test.js"
   },
   "dependencies": {
-    "chalk": "^4.1.2",
+    "chalk": "^4.1.0",
     "chalk-table": "^1.0.2",
-    "draftlog": "^1.0.13"
+    "draftlog": "^1.0.12"
   },
   "devDependencies": {
-    "nodemon": "^2.0.22"
+    "chai": "^4.2.0",
+    "mocha": "^8.2.1",
+    "nodemon": "^2.0.6",
+    "nyc": "^15.1.0",
+    "reify": "^0.20.12",
+    "sinon": "^9.2.1"
   }
 }
